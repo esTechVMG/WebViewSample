@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -19,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
     public WebView webView;
     public Button reloadButton;
     public EditText urlText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("WebViewVer","WebView Version:");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -36,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.v("Reload","Reloading URL:" + webView.getOriginalUrl());
-                webView.reload();
+                if(reloadButton.getText().equals(getString(R.string.reload))){
+                    webView.reload();
+                }else{
+                    webView.stopLoading();
+                }
+
             }
         });
 
@@ -83,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void updatewebviewContent(String url){
         exitCount=0;//Restarts exit count
         urlText.clearFocus();//Ensures that loses focus the url box
@@ -122,21 +129,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isHttp(String url){
-        boolean http=url.startsWith("http://");
-        Log.v("isHTTP","isHTTP:"+http);
+    public boolean isHttp(String url) {
+        boolean http = url.startsWith("http://");
+        Log.v("isHTTP", "isHTTP:" + http);
         return http;
     }
 
+    //Unused but probably useful on future
     public void  updateWebviewContentCustom(String message){
         String customHtml = "<html><body><h1>UPS</h1><h2>" + message + "</h2></body></html>";
         webView.loadData(customHtml, "text/html", "UTF-8");
     }
+
     class WebClient extends WebViewClient{
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             setTittle();
+            reloadButton.setText(getString(R.string.reload));
+
+        }
+
+
+
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            reloadButton.setText(getString(R.string.stop));
         }
     }
 }

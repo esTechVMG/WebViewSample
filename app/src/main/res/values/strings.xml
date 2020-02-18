@@ -4,4 +4,5 @@
     <string name="stop">X</string>
     <string name="goBack">◀</string>
     <string name="goForward">▶</string>
+    <string name="inputHint">Enter what you want</string>
 </resources>
