@@ -34,12 +34,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/inputHint"
             android:imeOptions="actionDone"
             android:inputType="textUri|textPersonName"
             android:selectAllOnFocus="true"
-            android:autofillHints="" tools:targetApi="o"/>
+            tools:targetApi="o" />
 
         <Button
             android:id="@+id/reload"
