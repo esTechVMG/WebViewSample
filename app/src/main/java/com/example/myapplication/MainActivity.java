@@ -8,23 +8,51 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     public WebView webView;
-    public Button reloadButton;
+    public Button reloadButton,backButton,forButton;
     public EditText urlText;
+    public ProgressBar progressBar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Back/Forward Buttons
+        backButton=findViewById(R.id.backButton);
+        forButton=findViewById(R.id.forwardButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(webView.canGoBack()){
+                    webView.goBack();
+                }
+            }
+        });
+        forButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(webView.canGoForward()){
+                    webView.goForward();
+                }
+            }
+        });
+
+        //Progress Bar
+        progressBar=findViewById(R.id.progressBar);
 
         //WEBVIEW
         webView=findViewById(R.id.webview);
@@ -135,10 +163,9 @@ public class MainActivity extends AppCompatActivity {
         return http;
     }
 
-    //Unused but probably useful on future
-    public void  updateWebviewContentCustom(String message){
-        String customHtml = "<html><body><h1>UPS</h1><h2>" + message + "</h2></body></html>";
-        webView.loadData(customHtml, "text/html", "UTF-8");
+    public void buttonsUpdate(){
+        backButton.setEnabled(webView.canGoBack());
+        forButton.setEnabled(webView.canGoForward());
     }
 
     class WebClient extends WebViewClient{
@@ -147,16 +174,23 @@ public class MainActivity extends AppCompatActivity {
             super.onPageFinished(view, url);
             setTittle();
             reloadButton.setText(getString(R.string.reload));
-
+            progressBar.setProgress(100);
         }
 
 
-
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(0);
+            return super.shouldOverrideUrlLoading(view, request);
+        }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
             reloadButton.setText(getString(R.string.stop));
+            progressBar.setProgress(50);
+            buttonsUpdate();
         }
     }
 }
