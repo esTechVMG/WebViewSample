@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.estechvmg.vmgbrowser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
         //Progress Bar
         progressBar=findViewById(R.id.progressBar);
 
-        //WEBVIEW
+        //WebView
         webView=findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebClient());
 
-        //RELOAD BUTTON
+        //Reload/Stop Button
         reloadButton=findViewById(R.id.reload);
         reloadButton.setOnClickListener(new View.OnClickListener() {//STUB IMPLEMENTATION
             @Override
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //URL BOX CODE
+        //URL Box code
         urlText=findViewById(R.id.urlBox);
         urlText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //BACK BUTTON
+    //Back Button
     //Default 0
     // One Click to exit 1
     public int exitCount=0;

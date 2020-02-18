@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.estechvmg.vmgbrowser;
 
 import org.junit.Test;
 
