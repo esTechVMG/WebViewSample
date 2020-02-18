@@ -15,18 +15,18 @@
         android:visibility="visible">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="◀" />
+            android:text="@string/goBack" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/forwardButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="▶"
+            android:text="@string/goForward"
             android:textSize="14sp" />
 
         <EditText
@@ -35,22 +35,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:ems="10"
+            android:hint="Enter what you want"
             android:imeOptions="actionDone"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:selectAllOnFocus="true" />
 
         <Button
             android:id="@+id/reload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="🔄" />
-
-        <Button
-            android:id="@+id/update2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="x" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 

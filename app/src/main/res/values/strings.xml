@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">VMG Browser</string>
+    <string name="reload">🔄</string>
+    <string name="stop">X</string>
+    <string name="goBack">◀</string>
+    <string name="goForward">▶</string>
 </resources>
