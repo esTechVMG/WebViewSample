@@ -2,7 +2,9 @@ package com.estechvmg.vmgbrowser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -20,7 +22,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public WebView webView;
-    public Button reloadButton,backButton,forButton;
+    public Button reloadButton,backButton,forButton,openBrowser;
     public EditText urlText;
     public ProgressBar progressBar;
 
@@ -30,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Open Browser Button
+        openBrowser=findViewById(R.id.openBrowser);
+        openBrowser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(webView.getUrl()));
+                startActivity(browserIntent);
+            }
+        });
 
         //Back/Forward Buttons
         backButton=findViewById(R.id.backButton);

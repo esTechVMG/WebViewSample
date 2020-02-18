@@ -38,13 +38,21 @@
             android:hint="@string/inputHint"
             android:imeOptions="actionDone"
             android:inputType="textUri|textPersonName"
-            android:selectAllOnFocus="true" />
+            android:selectAllOnFocus="true"
+            android:autofillHints="" tools:targetApi="o"/>
 
         <Button
             android:id="@+id/reload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/openBrowser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_set_as" />
 
     </LinearLayout>
 
